@@ -14,6 +14,14 @@ public class Enrollment{
         this.courseId=courseId;
         this.enrollmentDate=enrollmentDate;
         this.status=status;
+
+    }
+    private Enrollment(EnrollmentBuilder builder) {
+        this.enrollmentId = builder.enrollmentId;
+        this.studentId = builder.studentId;
+        this.courseId = builder.courseId;
+        this.enrollmentDate = builder.enrollmentDate;
+        this.status = builder.status;
     }
     public int getEnrollmentId() {
         return enrollmentId;
@@ -45,5 +53,36 @@ public class Enrollment{
                 ", enrollmentDate='" + enrollmentDate + '\'' +
                 ", status='" + status + '\'' +
                 '}';
+    }
+    public static class EnrollmentBuilder {
+        private int enrollmentId;
+        private int studentId;
+        private int courseId;
+        private String enrollmentDate;
+        private String status;
+
+        public EnrollmentBuilder setEnrollmentId(int enrollmentId) {
+            this.enrollmentId=enrollmentId;
+            return this;
+        }
+        public EnrollmentBuilder setStudentId(int studentId) {
+            this.studentId=studentId;
+            return this;
+        }
+        public EnrollmentBuilder setCourseId(int courseId) {
+            this.courseId=courseId;
+            return this;
+        }
+        public EnrollmentBuilder setEnrollmentDate(String enrollmentDate) {
+            this.enrollmentDate=enrollmentDate;
+            return this;
+        }
+        public EnrollmentBuilder setStatus(String status) {
+            this.status=status;
+            return this;
+        }
+        public Enrollment build() {
+            return new Enrollment(this);
+        }
     }
 }
